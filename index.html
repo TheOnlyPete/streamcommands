@@ -7,54 +7,88 @@
     body {
         margin: 0;
         font-family: Arial, Helvetica, sans-serif;
-        background: linear-gradient(135deg, #1e1e2f, #14141f);
+        background: linear-gradient(135deg, #0f0f1a, #141426);
         color: #ffffff;
+        overflow-x: hidden;
     }
 
     .container {
-        max-width: 900px;
+        max-width: 950px;
         margin: 60px auto;
-        padding: 40px;
+        padding: 50px;
         background: rgba(255, 255, 255, 0.05);
-        border-radius: 16px;
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+        border-radius: 18px;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+        animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
         text-align: center;
-        margin-bottom: 40px;
-        font-size: 32px;
-        letter-spacing: 2px;
+        margin-bottom: 50px;
+        font-size: 34px;
+        letter-spacing: 3px;
+        color: #ffd700;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    }
+
+    .category {
+        margin-top: 45px;
+        font-size: 20px;
+        font-weight: bold;
+        padding-bottom: 8px;
+        margin-bottom: 25px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        color: #ff4ecd;
+        text-shadow: 0 0 10px rgba(255,78,205,0.4);
     }
 
     .command {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
         background: rgba(255, 255, 255, 0.08);
-        padding: 18px 24px;
-        margin-bottom: 18px;
-        border-radius: 12px;
-        transition: 0.2s ease;
+        padding: 22px 26px;
+        margin-bottom: 22px;
+        border-radius: 14px;
+        transition: all 0.25s ease;
+        position: relative;
     }
 
     .command:hover {
         background: rgba(255, 255, 255, 0.12);
-        transform: scale(1.02);
+        transform: scale(1.015);
+        box-shadow: 0 0 25px rgba(255, 78, 205, 0.3);
+    }
+
+    .command-left {
+        flex: 1;
     }
 
     .command-name {
         font-size: 20px;
         font-weight: bold;
         margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 
     .usage {
         font-size: 14px;
         opacity: 0.8;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
     }
 
     .description {
         font-size: 15px;
-        opacity: 0.9;
+        opacity: 0.95;
     }
 
     .example {
@@ -64,13 +98,21 @@
         font-style: italic;
     }
 
-    .category {
-        margin-top: 40px;
-        font-size: 18px;
+    .copy-btn {
+        background: linear-gradient(135deg, #ff4ecd, #ffd700);
+        border: none;
+        color: #000;
+        padding: 6px 12px;
+        border-radius: 8px;
+        cursor: pointer;
         font-weight: bold;
-        border-bottom: 1px solid rgba(255,255,255,0.2);
-        padding-bottom: 6px;
-        margin-bottom: 20px;
+        font-size: 12px;
+        transition: 0.2s ease;
+    }
+
+    .copy-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
     }
 </style>
 </head>
@@ -83,49 +125,72 @@
     <div class="category">🎰 Casino</div>
 
     <div class="command">
-        <div class="command-name">!gamble</div>
-        <div class="usage">Usage: !gamble &lt;amount | all&gt;</div>
-        <div class="description">
-            50/50 chance to double your points or lose them.
+        <div class="command-left">
+            <div class="command-name">🎲 !gamble</div>
+            <div class="usage">Usage: !gamble &lt;amount | all&gt;</div>
+            <div class="description">
+                50/50 chance to double your points or lose them.
+            </div>
+            <div class="example">
+                Example: !gamble 100<br>
+                Example: !gamble all
+            </div>
         </div>
-        <div class="example">
-            Example: !gamble 100<br>
-            Example: !gamble all
-        </div>
+        <button class="copy-btn" onclick="copyCommand('!gamble')">Copy</button>
     </div>
 
     <div class="command">
-        <div class="command-name">!gambleslots</div>
-        <div class="usage">Usage: !gambleslots &lt;amount | all&gt;</div>
-        <div class="description">
-            Spin the slots. 3+ matching symbols win bonus points.
+        <div class="command-left">
+            <div class="command-name">🎰 !gambleslots</div>
+            <div class="usage">Usage: !gambleslots &lt;amount | all&gt;</div>
+            <div class="description">
+                Spin the slots. 3+ matching symbols win bonus points.
+            </div>
+            <div class="example">
+                Example: !gambleslots 100<br>
+                Example: !gambleslots all
+            </div>
         </div>
-        <div class="example">
-            Example: !gambleslots 100<br>
-            Example: !gambleslots all
-        </div>
+        <button class="copy-btn" onclick="copyCommand('!gambleslots')">Copy</button>
     </div>
 
     <div class="category">😂 Silly</div>
 
     <div class="command">
-        <div class="command-name">!pp</div>
-        <div class="usage">Usage: !pp</div>
-        <div class="description">
-            Measure your completely scientific pp size.
+        <div class="command-left">
+            <div class="command-name">📏 !pp</div>
+            <div class="usage">Usage: !pp</div>
+            <div class="description">
+                Measure your completely scientific pp size.
+            </div>
         </div>
+        <button class="copy-btn" onclick="copyCommand('!pp')">Copy</button>
     </div>
 
     <div class="category">💥 Chaos</div>
 
     <div class="command">
-        <div class="command-name">🩴 !chancla</div>
-        <div class="usage">Usage: !chancla @user</div>
-        <div class="description">
-            Launch a deadly flip-flop at someone in chat.
+        <div class="command-left">
+            <div class="command-name">🩴 !chancla</div>
+            <div class="usage">Usage: !chancla &lt;@user&gt;</div>
+            <div class="description">
+                Launch a deadly chancla at someone in chat.
+            </div>
+            <div class="example">
+                Example: !chancla <br>
+                Example: !chancla @user
+            </div>
         </div>
+        <button class="copy-btn" onclick="copyCommand('!chancla')">Copy</button>
     </div>
 
 </div>
+
+<script>
+function copyCommand(command) {
+    navigator.clipboard.writeText(command);
+}
+</script>
+
 </body>
 </html>
