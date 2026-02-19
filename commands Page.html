@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Stream Commands</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #1e1e2f, #14141f);
+        color: #ffffff;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 60px auto;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 16px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 32px;
+        letter-spacing: 2px;
+    }
+
+    .command {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 18px 24px;
+        margin-bottom: 18px;
+        border-radius: 12px;
+        transition: 0.2s ease;
+    }
+
+    .command:hover {
+        background: rgba(255, 255, 255, 0.12);
+        transform: scale(1.02);
+    }
+
+    .command-name {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 6px;
+    }
+
+    .usage {
+        font-size: 14px;
+        opacity: 0.8;
+        margin-bottom: 6px;
+    }
+
+    .description {
+        font-size: 15px;
+        opacity: 0.9;
+    }
+
+    .category {
+        margin-top: 40px;
+        font-size: 18px;
+        font-weight: bold;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding-bottom: 6px;
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+    <h1>🎮 Available Commands</h1>
+
+    <div class="category">🎰 Casino</div>
+
+    <div class="command">
+        <div class="command-name">!gamble</div>
+        <div class="usage">Usage: !gamble &lt;amount | all&gt;</div>
+        <div class="description">50/50 chance to double your points or lose them all.</div>
+    </div>
+
+    <div class="command">
+        <div class="command-name">!gambleslots</div>
+        <div class="usage">Usage: !gambleslots &lt;amount | all&gt;</div>
+        <div class="description">Spin the slots. 3+ matches win bonus points.</div>
+    </div>
+
+    <div class="category">😂 Silly</div>
+
+    <div class="command">
+        <div class="command-name">!pp</div>
+        <div class="usage">Usage: !pp</div>
+        <div class="description">Measure your completely scientific pp size.</div>
+    </div>
+
+    <div class="category">💥 Chaos</div>
+
+    <div class="command">
+        <div class="command-name">!bomb</div>
+        <div class="usage">Usage: !bomb @user</div>
+        <div class="description">Attempt to blow up another viewer (risky).</div>
+    </div>
+
+    <div class="category">👑 Power</div>
+
+    <div class="command">
+        <div class="command-name">!king</div>
+        <div class="usage">Usage: !king</div>
+        <div class="description">Claim the throne… if fate allows it.</div>
+    </div>
+
+</div>
+</body>
+</html>
