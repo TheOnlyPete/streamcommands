@@ -3,240 +3,194 @@
 <head>
 <meta charset="UTF-8">
 <title>Stream Commands</title>
-
-<!-- Force proper emoji rendering -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
 
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background: linear-gradient(135deg, #0f0f1a, #141426);
-        color: #ffffff;
-        overflow-x: hidden;
-    }
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #0f0f1a, #141426);
+    color: #ffffff;
+}
 
-    .container {
-        max-width: 950px;
-        margin: 60px auto;
-        padding: 50px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 18px;
-        backdrop-filter: blur(8px);
-        box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
-        animation: fadeIn 0.8s ease forwards;
-    }
+.container {
+    max-width: 950px;
+    margin: 60px auto;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    backdrop-filter: blur(8px);
+}
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 34px;
+    color: #ffd700;
+}
 
-    h1 {
-        text-align: center;
-        margin-bottom: 50px;
-        font-size: 34px;
-        letter-spacing: 3px;
-        color: #ffd700;
-        text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-    }
+.search-box {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
 
-    .category {
-        margin-top: 45px;
-        font-size: 20px;
-        font-weight: bold;
-        padding-bottom: 8px;
-        margin-bottom: 25px;
-        border-bottom: 1px solid rgba(255,255,255,0.2);
-        color: #ff4ecd;
-        text-shadow: 0 0 10px rgba(255,78,205,0.4);
-    }
+.category {
+    margin-top: 35px;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    margin-bottom: 15px;
+    color: #ff4ecd;
+}
 
-    .command {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 20px;
-        background: rgba(255, 255, 255, 0.08);
-        padding: 22px 26px;
-        margin-bottom: 22px;
-        border-radius: 14px;
-        transition: all 0.25s ease;
-        position: relative;
-    }
+.command {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    background: rgba(255,255,255,0.08);
+    padding: 18px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
 
-    .command:hover {
-        background: rgba(255, 255, 255, 0.12);
-        transform: scale(1.015);
-        box-shadow: 0 0 25px rgba(255, 78, 205, 0.3);
-    }
+.command-left { flex: 1; }
 
-    .command-left {
-        flex: 1;
-    }
+.command-name {
+    font-size: 18px;
+    font-weight: bold;
+}
 
-    .command-name {
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 6px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
+.usage, .description, .example {
+    font-size: 14px;
+    opacity: 0.85;
+}
 
-    .emoji-icon {
-        font-family: 'Noto Color Emoji', sans-serif;
-        font-size: 20px;
-        margin-right: 4px;
-        filter: drop-shadow(0 0 6px rgba(255,78,205,0.6));
-        transition: 0.2s ease;
-    }
+.copy-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, #ff4ecd, #ffd700);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    height: 28px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    .command:hover .emoji-icon {
-        transform: rotate(-15deg) scale(1.15);
-    }
-
-    .usage {
-        font-size: 14px;
-        opacity: 0.8;
-        margin-bottom: 10px;
-    }
-
-    .description {
-        font-size: 15px;
-        opacity: 0.95;
-    }
-
-    .example {
-        margin-top: 10px;
-        font-size: 14px;
-        opacity: 0.75;
-        font-style: italic;
-    }
-
-    .copy-btn {
-        background: linear-gradient(135deg, #ff4ecd, #ffd700);
-        border: none;
-        color: #000;
-        padding: 6px 12px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 12px;
-        transition: 0.2s ease;
-    }
-
-    .copy-btn:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-    }
+.hidden { display: none; }
 </style>
 </head>
 
 <body>
 <div class="container">
 
-    <h1>🎮 Available Commands</h1>
+<h1>🎮 Available Commands</h1>
 
-    <div class="category">🎰 Casino</div>
+<input type="text" id="search" class="search-box" placeholder="Search commands..." onkeyup="filterCommands()">
 
-    <div class="command">
-        <div class="command-left">
-            <div class="command-name">🎲 !gamble</div>
-            <div class="usage">Usage: !gamble &lt;amount | all&gt;</div>
-            <div class="description">
-                50/50 chance to double your points or lose them.
-            </div>
-            <div class="example">
-                Example: !gamble 100<br>
-                Example: !gamble all
-            </div>
-        </div>
-        <button class="copy-btn" onclick="copyCommand('!gamble')">Copy</button>
+<div class="category">🎰 Casino</div>
+
+<div class="command">
+    <div class="command-left">
+        <div class="command-name">🎲 !gamble</div>
+        <div class="usage">Usage: !gamble &lt;amount | all&gt;</div>
+        <div class="description">50/50 chance to double or lose points.</div>
     </div>
+    <button class="copy-btn" onclick="copyCommand(this,'!gamble')">Copy</button>
+</div>
 
-    <div class="command">
-        <div class="command-left">
-            <div class="command-name">🎰 !gambleslots</div>
-            <div class="usage">Usage: !gambleslots &lt;amount | all&gt;</div>
-            <div class="description">
-                Spin the slots. 3+ matching symbols win bonus points.
-            </div>
-            <div class="example">
-                Example: !gambleslots 100<br>
-                Example: !gambleslots all
-            </div>
-        </div>
-        <button class="copy-btn" onclick="copyCommand('!gambleslots')">Copy</button>
+<div class="command">
+    <div class="command-left">
+        <div class="command-name">🎰 !gambleslots</div>
+        <div class="usage">Usage: !gambleslots &lt;amount | all&gt;</div>
+        <div class="description">Slot machine for bonus wins.</div>
     </div>
+    <button class="copy-btn" onclick="copyCommand(this,'!gambleslots')">Copy</button>
+</div>
 
-    <div class="category">😂 Silly</div>
+<div class="category">😂 Silly</div>
 
-    <div class="command">
-        <div class="command-left">
-            <div class="command-name">📏 !pp</div>
-            <div class="usage">Usage: !pp</div>
-            <div class="description">
-                Measure your completely scientific pp size.
-            </div>
-        </div>
-        <button class="copy-btn" onclick="copyCommand('!pp')">Copy</button>
+<div class="command">
+    <div class="command-left">
+        <div class="command-name">📏 !pp</div>
+        <div class="usage">Usage: !pp</div>
+        <div class="description">Measure your pp size.</div>
     </div>
+    <button class="copy-btn" onclick="copyCommand(this,'!pp')">Copy</button>
+</div>
 
-    <div class="category">💥 Chaos</div>
+<div class="category">💥 Chaos</div>
 
-    <div class="command">
-        <div class="command-left">
-            <div class="command-name">
-                <span class="emoji-icon">🩴</span> !chancla
-            </div>
-            <div class="usage">Usage: !chancla &lt;@user&gt;</div>
-            <div class="description">
-                Launch a deadly chancla at someone in chat.
-            </div>
-            <div class="example">
-                Example: !chancla <br>
-                Example: !chancla @user
-            </div>
-        </div>
-        <button class="copy-btn" onclick="copyCommand('!chancla')">Copy</button>
+<div class="command">
+    <div class="command-left">
+        <div class="command-name">🩴 !chancla</div>
+        <div class="usage">Usage: !chancla &lt;@user&gt;</div>
+        <div class="description">Throw a chancla.</div>
     </div>
+    <button class="copy-btn" onclick="copyCommand(this,'!chancla')">Copy</button>
+</div>
 
-    <div class="category">👑 Power</div>
+<div class="category">👑 Power</div>
 
-    <div class="command">
-        <div class="command-left">
-            <div class="command-name">👑 !king</div>
-            <div class="usage">Usage: !king</div>
-            <div class="description">
-                Attempt to claim the throne. Only one king at a time. 1 hour reign.
-            </div>
-            <div class="example">
-                Per-user cooldown applies.
-            </div>
-        </div>
-        <button class="copy-btn" onclick="copyCommand('!king')">Copy</button>
+<div class="command">
+    <div class="command-left">
+        <div class="command-name">👑 !king</div>
+        <div class="usage">Usage: !king</div>
+        <div class="description">Attempt to become king. Lasts 1 hour.</div>
+        <div class="example">5 second cooldown between attempts.</div>
     </div>
+    <button class="copy-btn" onclick="copyCommand(this,'!king')">Copy</button>
+</div>
 
-    <div class="command">
-        <div class="command-left">
-            <div class="command-name">💰 !tax</div>
-            <div class="usage">Usage: !tax &lt;@user&gt;</div>
-            <div class="description">
-                The king may tax 10% of a viewer's points.
-            </div>
-            <div class="example">
-                King only. 60 second cooldown.
-            </div>
-        </div>
-        <button class="copy-btn" onclick="copyCommand('!tax')">Copy</button>
+<div class="command">
+    <div class="command-left">
+        <div class="command-name">⚔️ !mutiny</div>
+        <div class="usage">Usage: !mutiny</div>
+        <div class="description">Multiple users must join to overthrow the king.</div>
     </div>
+    <button class="copy-btn" onclick="copyCommand(this,'!mutiny')">Copy</button>
+</div>
+
+<div class="command">
+    <div class="command-left">
+        <div class="command-name">💰 !tax</div>
+        <div class="usage">Usage: !tax &lt;@user&gt;</div>
+        <div class="description">King taxes 10% of points.</div>
+        <div class="example">60 second cooldown.</div>
+    </div>
+    <button class="copy-btn" onclick="copyCommand(this,'!tax')">Copy</button>
+</div>
 
 </div>
 
 <script>
-function copyCommand(command) {
+function copyCommand(button, command) {
     navigator.clipboard.writeText(command);
+    const original = button.innerText;
+    button.innerText = 'Copied';
+    setTimeout(() => button.innerText = original, 1500);
+}
+
+function filterCommands() {
+    const input = document.getElementById('search').value.toLowerCase();
+    const commands = document.querySelectorAll('.command');
+
+    commands.forEach(cmd => {
+        const text = cmd.innerText.toLowerCase();
+        cmd.style.display = text.includes(input) ? 'flex' : 'none';
+    });
 }
 </script>
 
