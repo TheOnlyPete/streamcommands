@@ -9,7 +9,12 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #0d0d16, #17172a);
+    background: #12121a;
+    /* subtle texture instead of obvious gradient */
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 24px 24px, 24px 24px;
     color: #ffffff;
 }
 
