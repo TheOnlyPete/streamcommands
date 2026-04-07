@@ -9,7 +9,7 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #0f0f1a, #141426);
+    background: linear-gradient(135deg, #0d0d16, #17172a);
     color: #ffffff;
 }
 
@@ -17,16 +17,18 @@ body {
     max-width: 950px;
     margin: 60px auto;
     padding: 50px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.04);
     border-radius: 18px;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
 }
 
 h1 {
     text-align: center;
     margin-bottom: 30px;
     font-size: 34px;
-    color: #ffd700;
+    color: #7dd3fc;
+    text-shadow: 0 0 12px rgba(125, 211, 252, 0.45);
 }
 
 .search-box {
@@ -37,29 +39,35 @@ h1 {
     border: none;
     outline: none;
     font-size: 16px;
+    background: rgba(255,255,255,0.08);
+    color: white;
 }
 
 .category {
-    margin-top: 35px;
-    font-size: 20px;
+    margin-top: 40px;
+    font-size: 16px;
     font-weight: bold;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-    margin-bottom: 15px;
-    color: #ff4ecd;
+    margin-bottom: 12px;
+    color: #c084fc;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(192,132,252,0.4);
 }
 
 .command {
     position: relative;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    background: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.06);
     padding: 18px;
     margin-bottom: 15px;
-    border-radius: 10px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255,255,255,0.06);
 }
 
-.command-left { flex: 1; }
+.command:hover {
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 0 25px rgba(192,132,252,0.35);
+}
 
 .command-name {
     font-size: 18px;
@@ -67,85 +75,130 @@ h1 {
     display: flex;
     align-items: center;
     gap: 6px;
+    margin-bottom: 6px;
 }
 
 .emoji-icon {
     font-family: 'Noto Color Emoji', sans-serif;
-    font-size: 18px;
-    filter: drop-shadow(0 0 6px rgba(255,78,205,
+}
 
-.usage, .description, .example {
+.usage {
+    font-size: 13px;
+    opacity: 0.7;
+    margin-bottom: 6px;
+}
+
+.description {
     font-size: 14px;
-    opacity: 0.85;
+    margin-bottom: 10px;
+}
+
+.examples {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.example-header {
+    font-size: 12px;
+    opacity: 0.6;
+    margin-bottom: 2px;
+}
+
+.example-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0,0,0,0.3);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.example-copy {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, #a78bfa, #67e8f9);
+    color: #0b0b12;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
 }
 
 .copy-btn {
     position: absolute;
-    top: 12px;
-    right: 12px;
-    background: linear-gradient(135deg, #ff4ecd, #ffd700);
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(135deg, #a78bfa, #67e8f9);
     border: none;
-    padding: 6px 12px;
+    padding: 5px 10px;
     border-radius: 6px;
     cursor: pointer;
-    font-weight: bold;
     font-size: 12px;
-    height: 28px;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-weight: bold;
+    color: #0b0b12;
 }
 
-.hidden { display: none; }
 </style>
 </head>
 
 <body>
 <div class="container">
 
-<h1>🎮 Available Commands</h1>
+<h1>⚙️ Commands</h1>
 
-<input type="text" id="search" class="search-box" placeholder="Search commands..." onkeyup="filterCommands()">
+<input type="text" id="search" class="search-box" placeholder="Search..." onkeyup="filterCommands()">
 
-<div class="category">🎰 Casino</div>
+<div class="category">🎲 Gambling</div>
 
 <div class="command">
-    <div class="command-left">
-        <div class="command-name">🎲 !gamble</div>
-        <div class="usage">Usage: !gamble &lt;amount | all&gt;</div>
-        <div class="description">50/50 chance to double or lose points.</div>
+    <div class="command-name">🎲 !gamble</div>
+    <div class="usage">!gamble &lt;amount | all&gt;</div>
+    <div class="description">Double your points or lose them.</div>
+    <div class="examples">
+        <div class="example-header">Example</div>
+        <div class="example-line">!gamble 12345 <button class="example-copy" onclick="copyExample(this,'!gamble 12345')">⧉</button></div>
+        <div class="example-line">!gamble all <button class="example-copy" onclick="copyExample(this,'!gamble all')">⧉</button></div>
     </div>
     <button class="copy-btn" onclick="copyCommand(this,'!gamble')">Copy</button>
 </div>
 
 <div class="command">
-    <div class="command-left">
-        <div class="command-name">🎰 !gambleslots</div>
-        <div class="usage">Usage: !gambleslots &lt;amount | all&gt;</div>
-        <div class="description">Slot machine for bonus wins.</div>
+    <div class="command-name">🎰 !gambleslots</div>
+    <div class="usage">!gambleslots &lt;amount | all&gt;</div>
+    <div class="description">Slot machine with bonus payouts.</div>
+    <div class="examples">
+        <div class="example-header">Example</div>
+        <div class="example-line">!gambleslots 500 <button class="example-copy" onclick="copyExample(this,'!gambleslots 500')">⧉</button></div>
+        <div class="example-line">!gambleslots all <button class="example-copy" onclick="copyExample(this,'!gambleslots all')">⧉</button></div>
     </div>
     <button class="copy-btn" onclick="copyCommand(this,'!gambleslots')">Copy</button>
 </div>
 
-<div class="category">😂 Silly</div>
+<div class="category">🧪 Misc</div>
 
 <div class="command">
-    <div class="command-left">
-        <div class="command-name">📏 !pp</div>
-        <div class="usage">Usage: !pp</div>
-        <div class="description">Measure your pp size.</div>
-    </div>
+    <div class="command-name">📏 !pp</div>
+    <div class="usage">!pp</div>
+    <div class="description">Measure your totally real size.</div>
     <button class="copy-btn" onclick="copyCommand(this,'!pp')">Copy</button>
 </div>
 
-<div class="category">💥 Chaos</div>
+<div class="category">⚡ Actions</div>
 
 <div class="command">
-    <div class="command-left">
-        <div class="command-name"><span class="emoji-icon">🩴</span> !chancla</div>
-        <div class="usage">Usage: !chancla &lt;@user&gt;</div>
-        <div class="description">Throw a chancla.</div>
+    <div class="command-name"><span class="emoji-icon">🩴</span> !chancla</div>
+    <div class="usage">!chancla &lt;@user&gt; | !chancla</div>
+    <div class="description">Throw a chancla at a specific user or a random chatter.</div>
+    <div class="examples">
+        <div class="example-header">Example</div>
+        <div class="example-line">!chancla @user <button class="example-copy" onclick="copyExample(this,'!chancla @user')">⧉</button></div>
+        <div class="example-line">!chancla <button class="example-copy" onclick="copyExample(this,'!chancla')">⧉</button></div>
     </div>
     <button class="copy-btn" onclick="copyCommand(this,'!chancla')">Copy</button>
 </div>
@@ -153,30 +206,33 @@ h1 {
 <div class="category">👑 Power</div>
 
 <div class="command">
-    <div class="command-left">
-        <div class="command-name">👑 !king</div>
-        <div class="usage">Usage: !king</div>
-        <div class="description">Attempt to become king. Lasts 1 hour.</div>
-        <div class="example">5 second cooldown between attempts.</div>
+    <div class="command-name">👑 !king</div>
+    <div class="usage">!king</div>
+    <div class="description">Claim the throne (1 hour). Allows you to use the !tax command.</div>
+    <div class="examples">
+        <div class="example-header">Example</div>
+        <div class="example-line">Retry Cooldown: 5s</div>
+        <div class="example-line">King Cooldown: 1hr</div>
     </div>
     <button class="copy-btn" onclick="copyCommand(this,'!king')">Copy</button>
 </div>
 
 <div class="command">
-    <div class="command-left">
-        <div class="command-name">⚔️ !mutiny</div>
-        <div class="usage">Usage: !mutiny</div>
-        <div class="description">Multiple users must join to overthrow the king.</div>
-    </div>
+    <div class="command-name">⚔️ !mutiny</div>
+    <div class="usage">!mutiny</div>
+    <div class="description">Multiple chatters must also use this command at the same time to dethrone the king.</div>
     <button class="copy-btn" onclick="copyCommand(this,'!mutiny')">Copy</button>
 </div>
 
 <div class="command">
-    <div class="command-left">
-        <div class="command-name">💰 !tax</div>
-        <div class="usage">Usage: !tax &lt;@user&gt;</div>
-        <div class="description">King taxes 10% of points.</div>
-        <div class="example">60 second cooldown.</div>
+    <div class="command-name">💰 !tax</div>
+    <div class="usage">!tax &lt;@user&gt; | !tax all</div>
+    <div class="description">Tax the kingdom for 10% (everyone) or target a single user for 40%.</div>
+    <div class="examples">
+        <div class="example-header">Example</div>
+        <div class="example-line">!tax @user <button class="example-copy" onclick="copyExample(this,'!tax @user')">⧉</button></div>
+        <div class="example-line">!tax all <button class="example-copy" onclick="copyExample(this,'!tax all')">⧉</button></div>
+        <div class="example-line">Cooldown: 1m</div>
     </div>
     <button class="copy-btn" onclick="copyCommand(this,'!tax')">Copy</button>
 </div>
@@ -188,7 +244,13 @@ function copyCommand(button, command) {
     navigator.clipboard.writeText(command);
     const original = button.innerText;
     button.innerText = 'Copied';
-    setTimeout(() => button.innerText = original, 1500);
+    setTimeout(() => button.innerText = original, 1200);
+}
+
+function copyExample(button, text) {
+    navigator.clipboard.writeText(text);
+    button.innerText = '✔';
+    setTimeout(() => button.innerText = '⧉', 1000);
 }
 
 function filterCommands() {
@@ -197,7 +259,7 @@ function filterCommands() {
 
     commands.forEach(cmd => {
         const text = cmd.innerText.toLowerCase();
-        cmd.style.display = text.includes(input) ? 'flex' : 'none';
+        cmd.style.display = text.includes(input) ? 'block' : 'none';
     });
 }
 </script>
